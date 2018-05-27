@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        .style1 {
+            width: 100%;
+        }
+
+        .style59 {
+            width: 100%;
+        }
+
+        .style58 {
+            width: 301px;
+            text-align: right;
+        }
+
+        .style57 {
+            width: 290px;
+            text-align: left;
+        }
+    </style>
+
+    <script type="text/javascript" src="Scripts/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript" src="Scripts/vegas/vegas.min.js"></script>
+
+    <link href="Scripts/vegas/vegas.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+
+        $(function () {
+                $('body').vegas({
+                    slides: [
+                        { src: "/Images/slides/slide1.jpg" },
+                        { src: "/Images/slides/slide2.jpg" },
+                        { src: "/Images/slides/slide3.jpg" },
+                        { src: "/Images/slides/slide4.jpg" },
+                        { src: "/Images/slides/slide5.jpg" }
+                    ]
+                });
+            });
+
+    </script>
+
+</head>
+<body>
+
+    <form id="form1" runat="server">
+        <div style="width: 100%">
+            <table width="100%">
+                <tr>
+                    <td align="center">
+                        <table border="2" class="style1" width="100%">
+                            <tr>
+                                <td class="style59">
+                                    <asp:Image ID="Image2" runat="server" Height="123px" ImageAlign="Middle"
+                                               ImageUrl="~/Images/tracking-system2012.jpg" Width="100%" />
+                                </td>
+                            </tr>
+                        </table>
+                        <table border="2" class="style1">
+                            <tr>
+                                <td align="center" class="style55" colspan="2">
+                                    LOG IN
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" class="style58">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; USERNAME
+                                </td>
+                                <td class="style57">
+                                    <asp:TextBox ID="txtUsername" runat="server" height="22px" width="128px"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                                                                ControlToValidate="txtUsername" ErrorMessage="Enter Username"></asp:RequiredFieldValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="style58">
+                                    PASSWORD
+                                </td>
+                                <td class="style57">
+                                    <asp:TextBox ID="txtPassword" runat="server" height="22px" TextMode="Password"
+                                                 width="128px"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                                                                ControlToValidate="txtPassword" ErrorMessage="Enter Password"></asp:RequiredFieldValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" class="style55" colspan="2">
+                                    <asp:Button ID="BtnLogin" runat="server" Text="Login" style="height: 26px" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

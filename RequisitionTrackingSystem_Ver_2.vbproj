@@ -1,0 +1,939 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{85A1C7FD-C617-4ED5-9E94-3E9B429B5EF8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Intrack</RootNamespace>
+    <AssemblyName>Intrack</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Intrack.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="REQ_TRACKINGConnectionString-Deployment" Order="1" xmlns="">
+          <Destination Path="" />
+          <Object Type="dbFullSql">
+            <PreSource Path="Data Source=TSEROBATSE-PC%3bInitial Catalog=REQ_TRACKING%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" />
+            <Source Path="obj\Debug\AutoScripts\REQ_TRACKINGConnectionString-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="Req_Connection-Deployment" Order="2" xmlns="">
+          <Destination Path="" />
+          <Object Type="dbFullSql">
+            <PreSource Path="Data Source=TSEROBATSE-PC%3bInitial Catalog=REQ_TRACKING%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" />
+            <Source Path="obj\Debug\AutoScripts\Req_Connection-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Intrack.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.CrystalReports.Engine.1.0.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.ReportAppServer.1.0.0\lib\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
+      <Private>True</Private>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.ReportAppServer.1.0.0\lib\CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
+      <Private>True</Private>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.ReportAppServer.1.0.0\lib\CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
+      <Private>True</Private>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.ReportSource.1.0.0\lib\CrystalDecisions.ReportSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.Shared.1.0.0\lib\CrystalDecisions.Shared.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>packages\CrystalDecisions.Web.1.0.1\lib\CrystalDecisions.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AllUnitsReports.aspx" />
+    <Content Include="AllUsersReport.aspx" />
+    <Content Include="ALLUserSummaryReport_Unit.aspx" />
+    <Content Include="Cancel_Requisition.aspx" />
+    <Content Include="CaptureInvoice.aspx" />
+    <Content Include="CaptureInvoice_register.aspx" />
+    <Content Include="Change_Password.aspx" />
+    <Content Include="CheckOut_Post_Audit_assign.aspx" />
+    <Content Include="CheckOut_Pre_Audit_Assign.aspx" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Controls\All_Users.ascx" />
+    <Content Include="Controls\Assets_Header.ascx" />
+    <Content Include="Controls\Dept Logo.png" />
+    <Content Include="Controls\DeptLogo.gif" />
+    <Content Include="Controls\Header_Requester.ascx" />
+    <Content Include="Controls\Registry_Header.ascx" />
+    <Content Include="Controls\REQ_lOGO-CF01.bmp" />
+    <Content Include="Controls\REQ_lOGO-CF02.bmp" />
+    <Content Include="Controls\REQ_lOGO.png" />
+    <Content Include="Controls\tracking-system2012.jpg" />
+    <Content Include="Controls\All_Salary.ascx" />
+    <Content Include="CostCenterReport.aspx" />
+    <Content Include="EditUsers.aspx" />
+    <Content Include="Email.aspx" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Images\Dept Logo.png" />
+    <Content Include="Images\DeptLogo.gif" />
+    <Content Include="Images\REQ_lOGO-CF01.bmp" />
+    <Content Include="Images\REQ_lOGO-CF02.bmp" />
+    <Content Include="Images\REQ_lOGO.png" />
+    <Content Include="Images\tracking-system2012.jpg" />
+    <Content Include="Login.aspx" />
+    <Content Include="MaintainReq_Cycle.aspx" />
+    <Content Include="Maintain_Requisition_Cycle.aspx" />
+    <Content Include="NewUser.aspx" />
+    <Content Include="New_CF01.aspx" />
+    <Content Include="New_CF02.aspx" />
+    <Content Include="New_Subsistence.aspx" />
+    <Content Include="New_Travel.aspx" />
+    <Content Include="PrintCF01.aspx" />
+    <Content Include="PrintCF02.aspx" />
+    <Content Include="PrintFillingInfomation.aspx" />
+    <Content Include="Query_Requisition.aspx" />
+    <Content Include="REQ_lOGO-CF01.bmp" />
+    <Content Include="Resolve_Query.aspx" />
+    <Content Include="Salaries_Registry.aspx" />
+    <Content Include="Scan-In-Assets.aspx" />
+    <Content Include="Scan-in-Queries-Register.aspx" />
+    <Content Include="ScanInRegister3.aspx" />
+    <Content Include="ScanIn_Register.aspx" />
+    <Content Include="ScanIn_Register2.aspx" />
+    <Content Include="ScanIn_Requisition.aspx" />
+    <Content Include="ScanIn_SCM.aspx" />
+    <Content Include="ScanOut_Assets.aspx" />
+    <Content Include="ScanOut_Requestor.aspx" />
+    <Content Include="ScanOut_Requisition.aspx" />
+    <Content Include="Scan_In_Resolved.aspx" />
+    <Content Include="Scan_In_Sub_Travel.aspx" />
+    <Content Include="Scan_Out_Registry1.aspx" />
+    <Content Include="Scan_Out_Registry2.aspx" />
+    <Content Include="Scan_Out_Salary.aspx" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="SearchAllUsers.aspx" />
+    <Content Include="SearchRequestor.aspx" />
+    <Content Include="Search_requisition.aspx" />
+    <Content Include="Search_Salary.aspx" />
+    <Content Include="SubProgReport.aspx" />
+    <Content Include="tracking-system2012.jpg" />
+    <Content Include="Units_Reports.aspx" />
+    <Content Include="UpdateCF01.aspx" />
+    <Content Include="UpdateCF02.aspx" />
+    <Content Include="UpdateSubsistenceClaims.aspx" />
+    <Content Include="UpdateTravelclaims.aspx" />
+    <Content Include="ViewIrregulars.aspx" />
+    <Content Include="ViewUsers.aspx" />
+    <Content Include="View_ALL_Salary.aspx" />
+    <Content Include="View_Assets.aspx" />
+    <Content Include="View_Assets_Approved.aspx" />
+    <Content Include="View_Cancelled_Requester.aspx" />
+    <Content Include="View_Filled_Registry.aspx" />
+    <Content Include="View_InternalControlRegisterCF01.aspx" />
+    <Content Include="View_InternalControlRegisterCF02.aspx" />
+    <Content Include="View_InternalControlRegister_Queries.aspx.aspx" />
+    <Content Include="View_InternalControlRegister_Subsistence.aspx" />
+    <Content Include="View_InternalControlRegister_Travel.aspx" />
+    <Content Include="View_Paid_Requester.aspx" />
+    <Content Include="View_Queries_Users.aspx" />
+    <Content Include="View_RegistryCF01Details.aspx" />
+    <Content Include="View_Requester_CF01.aspx" />
+    <Content Include="View_Requester_CF02.aspx" />
+    <Content Include="View_Requester_Queries.aspx" />
+    <Content Include="View_Requester_Subsistence.aspx" />
+    <Content Include="View_Requester_Travel.aspx" />
+    <Content Include="View_Requisition_All.aspx" />
+    <Content Include="View_Sub_Claims_Details.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="ViewPaidClaims.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllUnitsReports.aspx.designer.vb">
+      <DependentUpon>AllUnitsReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllUnitsReports.aspx.vb">
+      <DependentUpon>AllUnitsReports.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AllUsersReport.aspx.designer.vb">
+      <DependentUpon>AllUsersReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllUsersReport.aspx.vb">
+      <DependentUpon>AllUsersReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ALLUserSummaryReport_Unit.aspx.designer.vb">
+      <DependentUpon>ALLUserSummaryReport_Unit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ALLUserSummaryReport_Unit.aspx.vb">
+      <DependentUpon>ALLUserSummaryReport_Unit.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Cancel_Requisition.aspx.designer.vb">
+      <DependentUpon>Cancel_Requisition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cancel_Requisition.aspx.vb">
+      <DependentUpon>Cancel_Requisition.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CaptureInvoice.aspx.designer.vb">
+      <DependentUpon>CaptureInvoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CaptureInvoice.aspx.vb">
+      <DependentUpon>CaptureInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CaptureInvoice_register.aspx.designer.vb">
+      <DependentUpon>CaptureInvoice_register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CaptureInvoice_register.aspx.vb">
+      <DependentUpon>CaptureInvoice_register.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Change_Password.aspx.designer.vb">
+      <DependentUpon>Change_Password.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Change_Password.aspx.vb">
+      <DependentUpon>Change_Password.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CheckOut_Post_Audit_assign.aspx.designer.vb">
+      <DependentUpon>CheckOut_Post_Audit_assign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckOut_Post_Audit_assign.aspx.vb">
+      <DependentUpon>CheckOut_Post_Audit_assign.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CheckOut_Pre_Audit_Assign.aspx.designer.vb">
+      <DependentUpon>CheckOut_Pre_Audit_Assign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckOut_Pre_Audit_Assign.aspx.vb">
+      <DependentUpon>CheckOut_Pre_Audit_Assign.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Controls\All_Users.ascx.designer.vb">
+      <DependentUpon>All_Users.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\All_Users.ascx.vb">
+      <DependentUpon>All_Users.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Assets_Header.ascx.designer.vb">
+      <DependentUpon>Assets_Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Assets_Header.ascx.vb">
+      <DependentUpon>Assets_Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Header_Requester.ascx.designer.vb">
+      <DependentUpon>Header_Requester.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Header_Requester.ascx.vb">
+      <DependentUpon>Header_Requester.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Registry_Header.ascx.designer.vb">
+      <DependentUpon>Registry_Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Registry_Header.ascx.vb">
+      <DependentUpon>Registry_Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Data\Datasets\dtPrintCF01.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtPrintCF01.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\All_Salary.ascx.designer.vb">
+      <DependentUpon>All_Salary.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\All_Salary.ascx.vb">
+      <DependentUpon>All_Salary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CostCenterReport.aspx.designer.vb">
+      <DependentUpon>CostCenterReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenterReport.aspx.vb">
+      <DependentUpon>CostCenterReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EditUsers.aspx.designer.vb">
+      <DependentUpon>EditUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditUsers.aspx.vb">
+      <DependentUpon>EditUsers.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Email.aspx.designer.vb">
+      <DependentUpon>Email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Email.aspx.vb">
+      <DependentUpon>Email.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="MaintainReq_Cycle.aspx.designer.vb">
+      <DependentUpon>MaintainReq_Cycle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaintainReq_Cycle.aspx.vb">
+      <DependentUpon>MaintainReq_Cycle.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Maintain_Requisition_Cycle.aspx.designer.vb">
+      <DependentUpon>Maintain_Requisition_Cycle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintain_Requisition_Cycle.aspx.vb">
+      <DependentUpon>Maintain_Requisition_Cycle.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="NewUser.aspx.designer.vb">
+      <DependentUpon>NewUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewUser.aspx.vb">
+      <DependentUpon>NewUser.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="New_CF01.aspx.designer.vb">
+      <DependentUpon>New_CF01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="New_CF01.aspx.vb">
+      <DependentUpon>New_CF01.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="New_CF02.aspx.designer.vb">
+      <DependentUpon>New_CF02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="New_CF02.aspx.vb">
+      <DependentUpon>New_CF02.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="New_Subsistence.aspx.designer.vb">
+      <DependentUpon>New_Subsistence.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="New_Subsistence.aspx.vb">
+      <DependentUpon>New_Subsistence.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="New_Travel.aspx.designer.vb">
+      <DependentUpon>New_Travel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="New_Travel.aspx.vb">
+      <DependentUpon>New_Travel.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PrintCF01.aspx.designer.vb">
+      <DependentUpon>PrintCF01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintCF01.aspx.vb">
+      <DependentUpon>PrintCF01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintCF02.aspx.designer.vb">
+      <DependentUpon>PrintCF02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintCF02.aspx.vb">
+      <DependentUpon>PrintCF02.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PrintFillingInfomation.aspx.designer.vb">
+      <DependentUpon>PrintFillingInfomation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintFillingInfomation.aspx.vb">
+      <DependentUpon>PrintFillingInfomation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Query_Requisition.aspx.designer.vb">
+      <DependentUpon>Query_Requisition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Query_Requisition.aspx.vb">
+      <DependentUpon>Query_Requisition.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="REQ_TRACKINGDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>REQ_TRACKINGDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Resolve_Query.aspx.designer.vb">
+      <DependentUpon>Resolve_Query.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Resolve_Query.aspx.vb">
+      <DependentUpon>Resolve_Query.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Salaries_Registry.aspx.designer.vb">
+      <DependentUpon>Salaries_Registry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Salaries_Registry.aspx.vb">
+      <DependentUpon>Salaries_Registry.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Scan-In-Assets.aspx.designer.vb">
+      <DependentUpon>Scan-In-Assets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Scan-In-Assets.aspx.vb">
+      <DependentUpon>Scan-In-Assets.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Scan-in-Queries-Register.aspx.designer.vb">
+      <DependentUpon>Scan-in-Queries-Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Scan-in-Queries-Register.aspx.vb">
+      <DependentUpon>Scan-in-Queries-Register.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ScanInRegister3.aspx.designer.vb">
+      <DependentUpon>ScanInRegister3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanInRegister3.aspx.vb">
+      <DependentUpon>ScanInRegister3.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ScanIn_Register.aspx.designer.vb">
+      <DependentUpon>ScanIn_Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanIn_Register.aspx.vb">
+      <DependentUpon>ScanIn_Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ScanIn_Register2.aspx.designer.vb">
+      <DependentUpon>ScanIn_Register2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanIn_Register2.aspx.vb">
+      <DependentUpon>ScanIn_Register2.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ScanIn_Requisition.aspx.designer.vb">
+      <DependentUpon>ScanIn_Requisition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanIn_Requisition.aspx.vb">
+      <DependentUpon>ScanIn_Requisition.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ScanIn_SCM.aspx.designer.vb">
+      <DependentUpon>ScanIn_SCM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanIn_SCM.aspx.vb">
+      <DependentUpon>ScanIn_SCM.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ScanOut_Assets.aspx.designer.vb">
+      <DependentUpon>ScanOut_Assets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanOut_Assets.aspx.vb">
+      <DependentUpon>ScanOut_Assets.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ScanOut_Requestor.aspx.designer.vb">
+      <DependentUpon>ScanOut_Requestor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanOut_Requestor.aspx.vb">
+      <DependentUpon>ScanOut_Requestor.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ScanOut_Requisition.aspx.designer.vb">
+      <DependentUpon>ScanOut_Requisition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanOut_Requisition.aspx.vb">
+      <DependentUpon>ScanOut_Requisition.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Scan_In_Resolved.aspx.designer.vb">
+      <DependentUpon>Scan_In_Resolved.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Scan_In_Resolved.aspx.vb">
+      <DependentUpon>Scan_In_Resolved.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Scan_In_Sub_Travel.aspx.designer.vb">
+      <DependentUpon>Scan_In_Sub_Travel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Scan_In_Sub_Travel.aspx.vb">
+      <DependentUpon>Scan_In_Sub_Travel.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Scan_Out_Registry1.aspx.designer.vb">
+      <DependentUpon>Scan_Out_Registry1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Scan_Out_Registry1.aspx.vb">
+      <DependentUpon>Scan_Out_Registry1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Scan_Out_Registry2.aspx.designer.vb">
+      <DependentUpon>Scan_Out_Registry2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Scan_Out_Registry2.aspx.vb">
+      <DependentUpon>Scan_Out_Registry2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Scan_Out_Salary.aspx.designer.vb">
+      <DependentUpon>Scan_Out_Salary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Scan_Out_Salary.aspx.vb">
+      <DependentUpon>Scan_Out_Salary.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SearchAllUsers.aspx.designer.vb">
+      <DependentUpon>SearchAllUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchAllUsers.aspx.vb">
+      <DependentUpon>SearchAllUsers.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SearchRequestor.aspx.designer.vb">
+      <DependentUpon>SearchRequestor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchRequestor.aspx.vb">
+      <DependentUpon>SearchRequestor.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Search_requisition.aspx.designer.vb">
+      <DependentUpon>Search_requisition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search_requisition.aspx.vb">
+      <DependentUpon>Search_requisition.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Search_Salary.aspx.designer.vb">
+      <DependentUpon>Search_Salary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search_Salary.aspx.vb">
+      <DependentUpon>Search_Salary.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SubProgReport.aspx.designer.vb">
+      <DependentUpon>SubProgReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubProgReport.aspx.vb">
+      <DependentUpon>SubProgReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Units_Reports.aspx.designer.vb">
+      <DependentUpon>Units_Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Units_Reports.aspx.vb">
+      <DependentUpon>Units_Reports.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="UpdateCF01.aspx.designer.vb">
+      <DependentUpon>UpdateCF01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateCF01.aspx.vb">
+      <DependentUpon>UpdateCF01.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="UpdateCF02.aspx.designer.vb">
+      <DependentUpon>UpdateCF02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateCF02.aspx.vb">
+      <DependentUpon>UpdateCF02.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="UpdateSubsistenceClaims.aspx.designer.vb">
+      <DependentUpon>UpdateSubsistenceClaims.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateSubsistenceClaims.aspx.vb">
+      <DependentUpon>UpdateSubsistenceClaims.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="UpdateTravelclaims.aspx.designer.vb">
+      <DependentUpon>UpdateTravelclaims.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateTravelclaims.aspx.vb">
+      <DependentUpon>UpdateTravelclaims.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ViewIrregulars.aspx.designer.vb">
+      <DependentUpon>ViewIrregulars.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewIrregulars.aspx.vb">
+      <DependentUpon>ViewIrregulars.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ViewUsers.aspx.designer.vb">
+      <DependentUpon>ViewUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUsers.aspx.vb">
+      <DependentUpon>ViewUsers.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_ALL_Salary.aspx.designer.vb">
+      <DependentUpon>View_ALL_Salary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_ALL_Salary.aspx.vb">
+      <DependentUpon>View_ALL_Salary.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Assets.aspx.designer.vb">
+      <DependentUpon>View_Assets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Assets.aspx.vb">
+      <DependentUpon>View_Assets.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Assets_Approved.aspx.designer.vb">
+      <DependentUpon>View_Assets_Approved.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Assets_Approved.aspx.vb">
+      <DependentUpon>View_Assets_Approved.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Cancelled_Requester.aspx.designer.vb">
+      <DependentUpon>View_Cancelled_Requester.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Cancelled_Requester.aspx.vb">
+      <DependentUpon>View_Cancelled_Requester.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Filled_Registry.aspx.designer.vb">
+      <DependentUpon>View_Filled_Registry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Filled_Registry.aspx.vb">
+      <DependentUpon>View_Filled_Registry.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_InternalControlRegisterCF01.aspx.designer.vb">
+      <DependentUpon>View_InternalControlRegisterCF01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_InternalControlRegisterCF01.aspx.vb">
+      <DependentUpon>View_InternalControlRegisterCF01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View_InternalControlRegisterCF02.aspx.designer.vb">
+      <DependentUpon>View_InternalControlRegisterCF02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_InternalControlRegisterCF02.aspx.vb">
+      <DependentUpon>View_InternalControlRegisterCF02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View_InternalControlRegister_Queries.aspx.aspx.designer.vb">
+      <DependentUpon>View_InternalControlRegister_Queries.aspx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_InternalControlRegister_Queries.aspx.aspx.vb">
+      <DependentUpon>View_InternalControlRegister_Queries.aspx.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_InternalControlRegister_Subsistence.aspx.designer.vb">
+      <DependentUpon>View_InternalControlRegister_Subsistence.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_InternalControlRegister_Subsistence.aspx.vb">
+      <DependentUpon>View_InternalControlRegister_Subsistence.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View_InternalControlRegister_Travel.aspx.designer.vb">
+      <DependentUpon>View_InternalControlRegister_Travel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_InternalControlRegister_Travel.aspx.vb">
+      <DependentUpon>View_InternalControlRegister_Travel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View_Paid_Requester.aspx.designer.vb">
+      <DependentUpon>View_Paid_Requester.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Paid_Requester.aspx.vb">
+      <DependentUpon>View_Paid_Requester.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Queries_Users.aspx.designer.vb">
+      <DependentUpon>View_Queries_Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Queries_Users.aspx.vb">
+      <DependentUpon>View_Queries_Users.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_RegistryCF01Details.aspx.designer.vb">
+      <DependentUpon>View_RegistryCF01Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_RegistryCF01Details.aspx.vb">
+      <DependentUpon>View_RegistryCF01Details.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Requester_CF01.aspx.designer.vb">
+      <DependentUpon>View_Requester_CF01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Requester_CF01.aspx.vb">
+      <DependentUpon>View_Requester_CF01.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Requester_CF02.aspx.designer.vb">
+      <DependentUpon>View_Requester_CF02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Requester_CF02.aspx.vb">
+      <DependentUpon>View_Requester_CF02.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Requester_Queries.aspx.designer.vb">
+      <DependentUpon>View_Requester_Queries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Requester_Queries.aspx.vb">
+      <DependentUpon>View_Requester_Queries.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Requester_Subsistence.aspx.designer.vb">
+      <DependentUpon>View_Requester_Subsistence.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Requester_Subsistence.aspx.vb">
+      <DependentUpon>View_Requester_Subsistence.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Requester_Travel.aspx.designer.vb">
+      <DependentUpon>View_Requester_Travel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Requester_Travel.aspx.vb">
+      <DependentUpon>View_Requester_Travel.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Requisition_All.aspx.designer.vb">
+      <DependentUpon>View_Requisition_All.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Requisition_All.aspx.vb">
+      <DependentUpon>View_Requisition_All.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="View_Sub_Claims_Details.aspx.designer.vb">
+      <DependentUpon>View_Sub_Claims_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View_Sub_Claims_Details.aspx.vb">
+      <DependentUpon>View_Sub_Claims_Details.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ViewPaidClaims.aspx.designer.vb">
+      <DependentUpon>ViewPaidClaims.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPaidClaims.aspx.vb">
+      <DependentUpon>ViewPaidClaims.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Data\Datasets\dtPrintCF01.xsc">
+      <DependentUpon>dtPrintCF01.xsd</DependentUpon>
+    </None>
+    <None Include="App_Data\Datasets\dtPrintCF01.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtPrintCF01.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App_Data\Datasets\dtPrintCF01.xss">
+      <DependentUpon>dtPrintCF01.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="packages.config" />
+    <None Include="REQ_TRACKINGDataSet.xsc">
+      <DependentUpon>REQ_TRACKINGDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="REQ_TRACKINGDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>REQ_TRACKINGDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="REQ_TRACKINGDataSet.xss">
+      <DependentUpon>REQ_TRACKINGDataSet.xsd</DependentUpon>
+    </None>
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reports\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51757</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
